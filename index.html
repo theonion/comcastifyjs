@@ -15,8 +15,11 @@
     <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
+        $('#main_content').headsmart();
+
+        comcastifyjs.letsPrepareTheseImages();
+
+      });
 
       $(window).load(function () {
 
@@ -66,6 +69,9 @@
     <pre><code>&lt;script src="http://code.onion.com/comcastify.js"&gt;&lt;/script&gt;</code></pre>
   </li>
 
+  <li>Prepare the images on your page on document ready (so images don't show up before the box):
+    <pre><code>comcastifyjs.letsPrepareTheseImages();</code></pre>
+  </li>
 
   <li>Initialize comcastify on window load, something like this (so image sizes are properly calculated):
   <pre><code>window.onload = comcastifyjs.fixMyImagesLoadingSoFast({
@@ -96,7 +102,11 @@
   <img src="images/example-img.jpg" />
 </div>
 <p>Here's the code running this thing:</p>
-<pre><code>$(window).load(function () {
+<pre><code>$(document).ready(function () {
+  comcastifyjs.letsPrepareTheseImages();
+});
+
+$(window).load(function () {
   comcastifyjs.fixMyImagesLoadingSoFast({
     loadMaxPercent: 0.75,
     loadSpeed: 1000,
