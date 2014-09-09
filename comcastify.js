@@ -53,11 +53,11 @@ var comcastifyjs = (function () {
                 // set up initial state of box
                 slowload.className = 'sloth-box';
                 slowload.style.backgroundColor = params.boxColor;
-                slowload.style.width = img.width;
-                slowload.style.height = img.height;
+                slowload.style.width = img.offsetWidth + 'px';
+                slowload.style.height = img.offsetHeight + 'px';
                 slowload.style.position = 'absolute';
-                slowload.style.top = img.offsetTop;
-                slowload.style.left = img.offsetLeft;
+                slowload.style.top = img.offsetTop + 'px';
+                slowload.style.left = img.offsetLeft + 'px';
                 slowload.style.clip = 'rect(0 auto auto auto)';
 
                 // remember what the max height should be for later calculation

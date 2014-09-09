@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
 
+    <script type="text/javascript" src="comcastify.js"></script>
     <script type="text/javascript" src="javascripts/modernizr.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
@@ -16,6 +17,16 @@
       $(document).ready(function () {
         $('#main_content').headsmart()
       })
+
+      $(window).load(function () {
+
+        comcastifyjs.fixMyImagesLoadingSoFast({
+          loadMaxPercent: 0.75,
+          loadSpeed: 1000,
+          loadIncrement: 5
+        })();
+
+      });
     </script>
     <title>ComcastifyJS by theonion</title>
   </head>
@@ -46,38 +57,45 @@
 
 
       <section id="main_content">
+      <h1>ComcastifyJS</h1>
         <p>With all this internet going around, sometimes you just want to experience the thrill of a long page load. Give your users the chance to enjoy a little slice of the future by slow loading your website's images with ComcastifyJS!</p>
 
-<h3>
-<a name="1-include-comcastifyjs-on-your-page-or-use-the-latest-version-from-our-cdn" class="anchor" href="#1-include-comcastifyjs-on-your-page-or-use-the-latest-version-from-our-cdn"><span class="octicon octicon-link"></span></a>1. Include comcastify.js on your page or use the latest version from our CDN:</h3>
+<h2>Lets slow things down!</h2>
+<ol>
+  <li>Include comcastify.js on your page or use the latest version from our CDN:
+    <pre><code>&lt;script src="http://code.onion.com/comcastify.js"&gt;&lt;/script&gt;</code></pre>
+  </li>
 
-<pre><code>&lt;script src="http://code.onion.com/comcastify.js"&gt;&lt;/script&gt;
-</code></pre>
 
-<h3>
-<a name="2-initialize-comcastify-on-window-load-something-like-this-so-image-sizes-are-properly-calculated" class="anchor" href="#2-initialize-comcastify-on-window-load-something-like-this-so-image-sizes-are-properly-calculated"><span class="octicon octicon-link"></span></a>2. Initialize comcastify on window load, something like this (so image sizes are properly calculated):</h3>
+  <li>Initialize comcastify on window load, something like this (so image sizes are properly calculated):
+  <pre><code>window.onload = comcastifyjs.fixMyImagesLoadingSoFast({
+      boxColor: '#123456',
+      loadMaxPercent: 0.75,
+      loadSpeed: 100,
+      loadIncrement: 5
+  });</code></pre>
+  </li>
 
-<pre><code>window.onload = comcastifyjs.fixMyImagesLoadingSoFast({
-    boxColor: '#123456',
-    loadMaxPercent: 0.75,
-    loadSpeed: 100,
-    loadIncrement: 5
-});
-</code></pre>
+  <li>Switch up parameters to change your experience:
+  <ul>
+  <li>
+  <strong>boxColor</strong> Hex color for the box placed over images.</li>
+  <li>
+  <strong>loadMaxPercent</strong> Max percentage of image to load.</li>
+  <li>
+  <strong>loadSpeed</strong> Speed to load your images to their max in ms.</li>
+  <li>
+  <strong>loadIncrement</strong> Number of pixels to load each time the loadSpeed timer ticks. </li>
+  </ul>
+  </li>
+</ol>
 
-<h3>
-<a name="3-switch-up-parameters-to-change-your-experience" class="anchor" href="#3-switch-up-parameters-to-change-your-experience"><span class="octicon octicon-link"></span></a>3. Switch up parameters to change your experience:</h3>
+<h2>See It Action!</h2>
+<p></p>
+<div>
+  <img src="images/example-img.jpg" />
+</div>
 
-<ul>
-<li>
-<strong>boxColor</strong> Hex color for the box placed over images.</li>
-<li>
-<strong>loadMaxPercent</strong> Max percentage of image to load.</li>
-<li>
-<strong>loadSpeed</strong> Speed to load your images to their max in ms.</li>
-<li>
-<strong>loadIncrement</strong> Number of pixels to load each time the loadSpeed timer ticks. </li>
-</ul>
       </section>
 
       <footer>
