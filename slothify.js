@@ -8,21 +8,16 @@ var slothifyjs = (function () {
             (function (slowloadDiv, args) {
 
                 // calculate new height
-                var currHeight = parseInt(slowloadDiv.style.height.replace('px', '')),
-                    currTop = parseInt(slowloadDiv.style.top.replace('px', '')),
-                    inc = currHeight - args.loadIncrement <= slowloadDiv.slothifyData.maxHeight
-                            ? currHeight - slowloadDiv.slothifyData.maxHeight : args.loadIncrement,
-                    newHeight = currHeight - inc,
-                    newTop = currTop + inc;
+                var newTopClip = slowloadDiv.slothifyData.imageTopClip + args.loadIncrement;
 
-                    // update slowload div
-                    slowloadDiv.style.height = newHeight + 'px';
-                    slowloadDiv.style.top = newTop + 'px';
+                // update slowload div
+                slowloadDiv.style.clip = 'rect(' + newTopClip + 'px auto auto auto)';
 
                 // check stopping conditions
-                if (newHeight > slowloadDiv.slothifyData.maxHeight) {
+                if (newTopClip < slowloadDiv.slothifyData.maxImageHeight) {
 
                     // create new update timeout
+                    slowloadDiv.slothifyData.imageTopClip = newTopClip;
                     setTimeout(slowloadModiferCallback(slowloadDiv, args), args.loadSpeed);
 
                 }
@@ -39,7 +34,7 @@ var slothifyjs = (function () {
 
             var params = {
 
-                loadMaxPercent: args.loadMaxPercent || 1.0, // max percentage to load images
+                loadMaxPercent: args.loadMaxPercent || 0.0, // max percentage to load images
                 boxColor: args.boxColor || '#000000',       // color of box overlay
                 loadSpeed: args.loadSpeed || 500,           // how often in ms to pass
                 loadIncrement: args.loadIncrement || 1      // pixels to load per pass
@@ -63,17 +58,23 @@ var slothifyjs = (function () {
                 slowload.style.position = 'absolute';
                 slowload.style.top = img.offsetTop;
                 slowload.style.left = img.offsetLeft;
+                slowload.style.clip = 'rect(0 auto auto auto)';
 
                 // remember what the max height should be for later calculation
                 slowload.slothifyData = {
-                    maxHeight: img.height * (1.0 - params.loadMaxPercent)
+                    imageTopClip: 0,
+                    maxImageHeight: img.height * params.loadMaxPercent
                 };
 
                 // put box over image
                 parent.appendChild(slowload);
 
-                // slowload using timeout since this is nicer to the browser :)
-                setTimeout(slowloadModiferCallback(slowload, params), params.loadSpeed);
+                if (params.loadMaxPercent > 0.0) {
+
+                    // slowload using timeout since this is nicer to the browser :)
+                    setTimeout(slowloadModiferCallback(slowload, params), params.loadSpeed);
+
+                }
 
             }
 
