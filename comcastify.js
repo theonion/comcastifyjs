@@ -20,6 +20,15 @@ var comcastifyjs = (function () {
     };
   };
 
+  var prepare = function () {
+    // hide images so image doesn't show up before box
+    var imgs = document.getElementsByTagName('img');
+    for(var i = 0; i < imgs.length; i++) {
+      var img = imgs[i];
+      img.style.visibility = 'hidden';
+    }
+  };
+
   var slowImages = function (args) {
     return function () {
       var params = {
@@ -58,6 +67,9 @@ var comcastifyjs = (function () {
         // put box over image
         parent.appendChild(slowload);
 
+        // show image again
+        img.style.visibility = 'visible';
+
         if (params.loadMaxPercent > 0.0) {
             // slowload using timeout since this is nicer to the browser :)
             setTimeout(slowloadModiferCallback(slowload, params), params.loadSpeed);
@@ -67,6 +79,7 @@ var comcastifyjs = (function () {
   };
 
   return {
+    letsPrepareTheseImages: prepare,
     fixMyImagesLoadingSoFast: slowImages
   };
 
