@@ -28,7 +28,7 @@ With all this internet going around, sometimes you just want to experience the t
     * **loadSpeed** Speed to load your images to their max in ms.
     * **loadIncrement** Number of pixels to load each time the loadSpeed timer ticks.
 
-## See it in Action!
+## See it in action!
 See an example on the project's site at: http://theonion.github.io/comcastifyjs/
 
 ## That's it!
