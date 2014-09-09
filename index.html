@@ -69,11 +69,11 @@
 
   <li>Initialize comcastify on window load, something like this (so image sizes are properly calculated):
   <pre><code>window.onload = comcastifyjs.fixMyImagesLoadingSoFast({
-      boxColor: '#123456',
-      loadMaxPercent: 0.75,
-      loadSpeed: 100,
-      loadIncrement: 5
-  });</code></pre>
+  boxColor: '#123456',
+  loadMaxPercent: 0.75,
+  loadSpeed: 100,
+  loadIncrement: 5
+});</code></pre>
   </li>
 
   <li>Switch up parameters to change your experience:
@@ -91,10 +91,21 @@
 </ol>
 
 <h2>See It Action!</h2>
-<p></p>
+<p>Enjoy the slowness of the load! (<em>hint: you might want to reload the page</em>)</p>
 <div>
   <img src="images/example-img.jpg" />
 </div>
+<p>Here's the code running this thing:</p>
+<pre><code>$(window).load(function () {
+  comcastifyjs.fixMyImagesLoadingSoFast({
+    loadMaxPercent: 0.75,
+    loadSpeed: 1000,
+    loadIncrement: 5
+  })();
+});</code></pre>
+
+<h2>That's it!</h2>
+<p>Now grab a coffee and enjoy the load times!</p>
 
       </section>
 
