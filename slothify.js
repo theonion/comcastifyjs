@@ -8,15 +8,19 @@ var slothifyjs = (function () {
             (function (slowloadDiv, args) {
 
                 // calculate new height
-                var newHeight = parseInt(slowloadDiv.style.height.replace('px', '')) - args.loadIncrement;
-                var newTop = parseInt(slowloadDiv.style.top.replace('px', '')) + args.loadIncrement;
-
-                // check stopping conditions
-                if (newHeight > 0 && newHeight > slowloadDiv.slothifyData.maxHeight) {
+                var currHeight = parseInt(slowloadDiv.style.height.replace('px', '')),
+                    currTop = parseInt(slowloadDiv.style.top.replace('px', '')),
+                    inc = currHeight - args.loadIncrement <= slowloadDiv.slothifyData.maxHeight
+                            ? currHeight - slowloadDiv.slothifyData.maxHeight : args.loadIncrement,
+                    newHeight = currHeight - inc,
+                    newTop = currTop + inc;
 
                     // update slowload div
                     slowloadDiv.style.height = newHeight + 'px';
                     slowloadDiv.style.top = newTop + 'px';
+
+                // check stopping conditions
+                if (newHeight > slowloadDiv.slothifyData.maxHeight) {
 
                     // create new update timeout
                     setTimeout(slowloadModiferCallback(slowloadDiv, args), args.loadSpeed);
