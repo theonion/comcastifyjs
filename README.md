@@ -6,17 +6,23 @@ With all this internet going around, sometimes you just want to experience the t
 
       ```<script src="http://code.onion.com/comcastify.js"></script>```
 
-2. Initialize comcastify on window load, something like this (so image sizes are properly calculated):
+2. Prepare the images on your page on document ready (so images don't show up before the box):
 
     ```
-    window.onload = comcastifyjs.fixMyImagesLoadingSoFast({
+    comcastifyjs.letsPrepareTheseImages();
+    ```
+
+3. Initialize comcastify on window load (so image sizes are properly calculated):
+
+    ```
+    comcastifyjs.fixMyImagesLoadingSoFast({
         boxColor: '#123456',
         loadMaxPercent: 0.75,
         loadSpeed: 100,
         loadIncrement: 5
     });
     ```
-3. Switch up parameters to change your experience:
+4. Switch up parameters to change your experience:
     * **boxColor** Hex color for the box placed over images.
     * **loadMaxPercent** Max percentage of image to load.
     * **loadSpeed** Speed to load your images to their max in ms.
