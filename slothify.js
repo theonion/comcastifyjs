@@ -46,10 +46,6 @@ var slothifyjs = (function () {
             var imgs = document.getElementsByTagName('img');
             for(var i = 0; i < imgs.length; i++) {
 
-                if (slowload) {
-                    console.log('yes ' + slowload);
-                }
-
                 // get some things we need
                 var img = imgs[i],
                     parent = img.parentNode,
