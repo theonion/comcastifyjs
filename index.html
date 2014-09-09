@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>ComcastifyJS by theonion</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/theonion/comcastifyjs">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>ComcastifyJS</h1>
+            <h2>Sometimes images just load too damned fast.</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/theonion/comcastifyjs/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/theonion/comcastifyjs/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <p>With all this internet going around, sometimes you just want to experience the thrill of a long page load. Give your users the chance to enjoy a little slice of the future by slow loading your website's images with ComcastifyJS!</p>
+
+<h3>
+<a name="1-include-comcastifyjs-on-your-page-or-use-the-latest-version-from-our-cdn" class="anchor" href="#1-include-comcastifyjs-on-your-page-or-use-the-latest-version-from-our-cdn"><span class="octicon octicon-link"></span></a>1. Include comcastify.js on your page or use the latest version from our CDN:</h3>
+
+<pre><code>&lt;script src="http://code.onion.com/comcastify.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<h3>
+<a name="2-initialize-comcastify-on-window-load-something-like-this-so-image-sizes-are-properly-calculated" class="anchor" href="#2-initialize-comcastify-on-window-load-something-like-this-so-image-sizes-are-properly-calculated"><span class="octicon octicon-link"></span></a>2. Initialize comcastify on window load, something like this (so image sizes are properly calculated):</h3>
+
+<pre><code>window.onload = comcastifyjs.fixMyImagesLoadingSoFast({
+    boxColor: '#123456',
+    loadMaxPercent: 0.75,
+    loadSpeed: 100,
+    loadIncrement: 5
+});
+</code></pre>
+
+<h3>
+<a name="3-switch-up-parameters-to-change-your-experience" class="anchor" href="#3-switch-up-parameters-to-change-your-experience"><span class="octicon octicon-link"></span></a>3. Switch up parameters to change your experience:</h3>
+
+<ul>
+<li>
+<strong>boxColor</strong> Hex color for the box placed over images.</li>
+<li>
+<strong>loadMaxPercent</strong> Max percentage of image to load.</li>
+<li>
+<strong>loadSpeed</strong> Speed to load your images to their max in ms.</li>
+<li>
+<strong>loadIncrement</strong> Number of pixels to load each time the loadSpeed timer ticks. </li>
+</ul>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/theonion">theonion</a> can be found on <a href="https://github.com/theonion/comcastifyjs">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
