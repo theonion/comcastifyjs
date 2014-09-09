@@ -1,0 +1,130 @@
+<html>
+    <head>
+        
+        <title>sloth.js</title>
+
+    </head>
+
+    <body>
+
+        <div style="width: 100px; display: inline-block;">
+            <img style="width:100%" src="baby-sloth.jpg" alt="http://violetadams.deviantart.com/art/Baby-sloth-385183627" />
+        </div>
+
+        <div style="width: 100px; display: inline-block;">
+            <image style="width: 100%" src="sloth-close-up.jpg" alt="http://mashable.com/2013/07/20/sloth-makeover/" />
+        </div>
+
+        <div style="width: 100px; display: inline-block;">
+            <image style="width: 100%" src="sloth-hanging.jpg" alt="http://mashable.com/2013/07/20/sloth-makeover/" />
+        </div>
+
+        <div>
+            <img src="sloth.jpg" alt="http://www.wisegeek.com/what-are-the-main-components-of-a-sloth-diet.htm#sloth-in-tree-showing-claws" />
+        </div>
+
+        <script type="text/javascript">
+
+
+            var slothifyjs = (function () {
+
+                // setup slowload modifier callback, structure avoids some annoying timer/closure problems
+                var slowloadModiferCallback = function (slowloadDiv, args) {
+
+                     return function () {
+
+                        (function (slowloadDiv, args) {
+
+                            // calculate new height
+                            var newHeight = parseInt(slowloadDiv.style.height.replace('px', '')) - args.loadIncrement;
+                            var newTop = parseInt(slowloadDiv.style.top.replace('px', '')) + args.loadIncrement;
+
+                            // check stopping conditions
+                            if (newHeight > 0 && newHeight > slowloadDiv.slothifyData.maxHeight) {
+
+                                // update slowload div
+                                slowloadDiv.style.height = newHeight + 'px';
+                                slowloadDiv.style.top = newTop + 'px';
+
+                                // create new update timeout
+                                setTimeout(slowloadModiferCallback(slowloadDiv, args), args.loadSpeed);
+
+                            }
+
+                        })(slowloadDiv, args);
+
+                    };
+
+                };
+
+                var slothify = function (args) {
+
+                    return function () {
+
+                        var params = {
+
+                            loadMaxPercent: args.loadMaxPercent || 1.0, // max percentage to load images
+                            boxColor: args.boxColor || '#000000',       // color of box overlay
+                            loadSpeed: args.loadSpeed || 500,           // how often in ms to pass
+                            loadIncrement: args.loadIncrement || 1      // pixels to load per pass
+
+                        };
+
+                        // loop through images and make them slow
+                        var imgs = document.getElementsByTagName('img');
+                        for(var i = 0; i < imgs.length; i++) {
+
+                            if (slowload) {
+                                console.log('yes ' + slowload);
+                            }
+
+                            // get some things we need
+                            var img = imgs[i],
+                                parent = img.parentNode,
+                                slowload = document.createElement('DIV');
+
+                            // set up initial state of box
+                            slowload.className = 'sloth-box';
+                            slowload.style.backgroundColor = params.boxColor;
+                            slowload.style.width = img.width;
+                            slowload.style.height = img.height;
+                            slowload.style.position = 'absolute';
+                            slowload.style.top = img.offsetTop;
+                            slowload.style.left = img.offsetLeft;
+
+                            // remember what the max height should be for later calculation
+                            slowload.slothifyData = {
+                                maxHeight: Math.floor(img.height * (1.0 - params.loadMaxPercent))
+                            };
+
+                            // put box over image
+                            parent.appendChild(slowload);
+
+                            // slowload using timeout since this is nicer to the browser :)
+                            setTimeout(slowloadModiferCallback(slowload, params), params.loadSpeed);
+
+                        }
+
+                    }
+
+                };
+
+                return {
+
+                    fixMyImagesLoadingSoFast: slothify
+
+                };
+
+            })();
+
+            window.onload = slothifyjs.fixMyImagesLoadingSoFast({
+                loadMaxPercent: 0.75,
+                loadSpeed: 1000,
+                loadIncrement: 10
+            });
+
+        </script>
+
+    </body>
+
+</html>
