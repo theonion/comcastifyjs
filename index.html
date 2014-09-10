@@ -26,7 +26,8 @@
         comcastifyjs.fixMyImagesLoadingSoFast({
           loadMaxPercent: 0.75,
           loadSpeed: 1000,
-          loadIncrement: 5
+          loadIncrement: 5,
+          boxColor: '#000000'
         })();
 
       });
@@ -84,6 +85,9 @@
 
   <li>Switch up parameters to change your experience:
   <ul>
+  <li>
+    <strong>elements</strong> list of DOM elements to limit comcastification to.
+  </li>
   <li>
   <strong>boxColor</strong> Hex color for the box placed over images.</li>
   <li>
