@@ -23,6 +23,7 @@ With all this internet going around, sometimes you just want to experience the t
     });
     ```
 4. Switch up parameters to change your experience:
+    * **elements** list of DOM elements to limit comcastification to.
     * **boxColor** Hex color for the box placed over images.
     * **loadMaxPercent** Max percentage of image to load.
     * **loadSpeed** Speed to load your images to their max in ms.
