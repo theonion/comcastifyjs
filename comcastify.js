@@ -6,7 +6,7 @@ var comcastifyjs = (function () {
 
         // calculate new height
         var newTopClip = slowloadDiv.slothifyData.imageTopClip + args.loadIncrement;
-        var img = slowloadDiv.previousSibling;
+        var img = slowloadDiv.slothifyData.img;
         slowloadDiv.style.width = img.offsetWidth + 'px';
         slowloadDiv.style.height = img.offsetHeight + 'px';
         slowloadDiv.style.top = img.offsetTop + 'px';
@@ -15,18 +15,14 @@ var comcastifyjs = (function () {
         // update slowload div
         slowloadDiv.style.clip = 'rect(' + newTopClip + 'px auto auto auto)';
 
+        // check stopping conditions
+        var maxImageHeight = img.height * args.loadMaxPercent;
         
         if (!img.complete) {
           setTimeout(slowloadModiferCallback(slowloadDiv, args), args.loadSpeed);
-        }
-        if (typeof img.naturalHeight !== "undefined" && img.naturalWidth === 0) {
+        } else if (typeof img.naturalHeight !== "undefined" && img.naturalWidth === 0) {
           setTimeout(slowloadModiferCallback(slowloadDiv, args), args.loadSpeed);
-        }
-
-        // check stopping conditions
-        var maxImageHeight = img.height * args.loadMaxPercent;
-
-        if (!maxImageHeight || maxImageHeight === 0 || newTopClip < maxImageHeight) {
+        } else if (!maxImageHeight || maxImageHeight === 0 || newTopClip < maxImageHeight) {
           // create new update timeout
           slowloadDiv.slothifyData.imageTopClip = newTopClip;
           setTimeout(slowloadModiferCallback(slowloadDiv, args), args.loadSpeed);
@@ -72,6 +68,7 @@ var comcastifyjs = (function () {
 
         // remember what the max height should be for later calculation
         slowload.slothifyData = {
+            img: img,
             imageTopClip: 0,
             maxImageHeight: img.height * params.loadMaxPercent
         };
