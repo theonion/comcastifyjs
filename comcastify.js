@@ -1,9 +1,10 @@
 var comcastifyjs = (function () {
+
   // setup slowload modifier callback, structure avoids some annoying timer/closure problems
   var slowloadModiferCallback = function (slowloadDiv, args) {
     return function () {
       (function (slowloadDiv, args) {
-        // calculate new height
+        // calculate new height for box based on args
         var img = slowloadDiv.slothifyData.img;
         var newTopClip = slowloadDiv.slothifyData.imageTopClip + args.loadIncrement;
         if (args.randomPause === 0.0 || Math.random() > args.randomPause) {
@@ -43,13 +44,15 @@ var comcastifyjs = (function () {
 
   var slowImages = function (args) {
     return function () {
+
       var params = {
-        elements: args.elements || document.getElementsByTagName('img'),
-        boxColor: args.boxColor || '#000000',       // color of box overlay
-        loadMaxPercent: args.loadMaxPercent || 0.0, // max percentage to load images
-        loadSpeed: args.loadSpeed || 500,           // how often in ms to pass
-        loadIncrement: args.loadIncrement || 1,     // pixels to load per pass
-        randomPause: args.randomPause || 0.0        // percentage of a change of a skipped frame
+        elements: args.elements || document.getElementsByTagName('img'),  // elements affected
+        boxColor: args.boxColor || '#000000',                 // color of box overlay
+        loadMaxPercent: args.loadMaxPercent || 0.0,           // max percentage to load images
+        loadSpeed: args.loadSpeed || 500,                     // how often in ms to pass
+        randLoadIncrement: args.randLoadIncrement || false,   // true to randomize load increment
+        loadIncrement: args.loadIncrement || 1,               // pixels to load per pass
+        randomPause: args.randomPause || 0.0                  // probability of skipping a pass
       };
 
       // make 'em load slow
@@ -82,14 +85,17 @@ var comcastifyjs = (function () {
         img.style.visibility = 'visible';
 
         if (params.loadMaxPercent > 0.0) {
-            var passedParams = Object.create(params);
-            if(passedParams.loadIncrement === 'random') {
-              passedParams.loadIncrement = Math.floor((Math.random() * 20) + 1);
-            }
 
-            // slowload using timeout since this is nicer to the browser :)
-            setTimeout(slowloadModiferCallback(slowload, passedParams), params.loadSpeed);
-        }
+          // allow for some changing of params per image
+          var modParamPerImg = Object.create(params);
+          if(modParamPerImg.randLoadIncrement) {
+            // randomize load increment
+            modParamPerImg.loadIncrement = Math.floor((Math.random() * 20) + 1);
+          }
+
+          // slowload using timeout since this is nicer to the browser :)
+          setTimeout(slowloadModiferCallback(slowload, modParamPerImg), params.loadSpeed);
+
       }
     }
   };
