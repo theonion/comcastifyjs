@@ -95,7 +95,7 @@ var comcastifyjs = (function () {
 
           // slowload using timeout since this is nicer to the browser :)
           setTimeout(slowloadModiferCallback(slowload, modParamPerImg), params.loadSpeed);
-
+        }
       }
     }
   };
