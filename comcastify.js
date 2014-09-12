@@ -80,8 +80,13 @@ var comcastifyjs = (function () {
         img.style.visibility = 'visible';
 
         if (params.loadMaxPercent > 0.0) {
+            var passedParams = Object.create(params);
+            if(passedParams.loadIncrement === 'random') {
+              passedParams.loadIncrement = Math.floor((Math.random() * 20) + 1);
+            }
+
             // slowload using timeout since this is nicer to the browser :)
-            setTimeout(slowloadModiferCallback(slowload, params), params.loadSpeed);
+            setTimeout(slowloadModiferCallback(slowload, passedParams), params.loadSpeed);
         }
       }
     }
