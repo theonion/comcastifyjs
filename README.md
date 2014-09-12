@@ -27,10 +27,14 @@ With all this internet going around, sometimes you just want to experience the t
     * **boxColor** Hex color for the box placed over images.
     * **loadMaxPercent** Max percentage of image to load.
     * **loadSpeed** Speed to load your images to their max in ms.
+    * **randLoadIncrement** Set to true to make load increment random, loadIncrement ignored in this case.
     * **loadIncrement** Number of pixels to load each time the loadSpeed timer ticks.
+    * **randomPause** Probability of skipping a pass each time the loadSpeed timer ticks.
 
 ## See it in action!
 See an example on the project's site at: http://theonion.github.io/comcastifyjs/
+
+Or, see it modeled by [these koalas!](http://www.clickhole.com/article/these-koalas-are-refusing-load-support-net-neutral-967)
 
 ## That's it!
 Now grab a coffee and enjoy the load times!
