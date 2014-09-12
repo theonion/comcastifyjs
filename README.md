@@ -32,5 +32,7 @@ With all this internet going around, sometimes you just want to experience the t
 ## See it in action!
 See an example on the project's site at: http://theonion.github.io/comcastifyjs/
 
+Or, see it modeled by [these koalas!](http://www.clickhole.com/article/these-koalas-are-refusing-load-support-net-neutral-967)
+
 ## That's it!
 Now grab a coffee and enjoy the load times!
