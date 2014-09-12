@@ -3,21 +3,22 @@ var comcastifyjs = (function () {
   var slowloadModiferCallback = function (slowloadDiv, args) {
     return function () {
       (function (slowloadDiv, args) {
-
         // calculate new height
-        var newTopClip = slowloadDiv.slothifyData.imageTopClip + args.loadIncrement;
         var img = slowloadDiv.slothifyData.img;
-        slowloadDiv.style.width = img.offsetWidth + 'px';
-        slowloadDiv.style.height = img.offsetHeight + 'px';
-        slowloadDiv.style.top = img.offsetTop + 'px';
-        slowloadDiv.style.left = img.offsetLeft + 'px';
+        var newTopClip = slowloadDiv.slothifyData.imageTopClip + args.loadIncrement;
+        if (args.randomPause === 0.0 || Math.random() > args.randomPause) {
+          slowloadDiv.style.width = img.offsetWidth + 'px';
+          slowloadDiv.style.height = img.offsetHeight + 'px';
+          slowloadDiv.style.top = img.offsetTop + 'px';
+          slowloadDiv.style.left = img.offsetLeft + 'px';
 
-        // update slowload div
-        slowloadDiv.style.clip = 'rect(' + newTopClip + 'px auto auto auto)';
+          // update slowload div
+          slowloadDiv.style.clip = 'rect(' + newTopClip + 'px auto auto auto)';
 
-        // check stopping conditions
-        var maxImageHeight = img.height * args.loadMaxPercent;
-        
+          // check stopping conditions
+          var maxImageHeight = img.height * args.loadMaxPercent;
+        }
+
         if (!img.complete) {
           setTimeout(slowloadModiferCallback(slowloadDiv, args), args.loadSpeed);
         } else if (typeof img.naturalHeight !== "undefined" && img.naturalWidth === 0) {
@@ -47,7 +48,8 @@ var comcastifyjs = (function () {
         boxColor: args.boxColor || '#000000',       // color of box overlay
         loadMaxPercent: args.loadMaxPercent || 0.0, // max percentage to load images
         loadSpeed: args.loadSpeed || 500,           // how often in ms to pass
-        loadIncrement: args.loadIncrement || 1      // pixels to load per pass
+        loadIncrement: args.loadIncrement || 1,     // pixels to load per pass
+        randomPause: args.randomPause || 0.0        // percentage of a change of a skipped frame
       };
 
       // make 'em load slow
