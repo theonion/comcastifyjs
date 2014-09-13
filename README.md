@@ -4,17 +4,19 @@ With all this internet going around, sometimes you just want to experience the t
 ## Lets slow things down!
 1. Include comcastify.js on your page or use the latest version from our CDN:
 
-      ```<script src="http://code.onion.com/comcastify.js"></script>```
+      ```html
+      <script src="http://code.onion.com/comcastify.js"></script>
+      ```
 
 2. Prepare the images on your page on document ready (so images don't show up before the box):
 
-    ```
+    ```js
     comcastifyjs.letsPrepareTheseImages();
     ```
 
 3. Initialize comcastify on window load (so image sizes are properly calculated):
 
-    ```
+    ```js
     comcastifyjs.fixMyImagesLoadingSoFast({
         boxColor: '#123456',
         loadMaxPercent: 0.75,
