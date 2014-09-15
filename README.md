@@ -32,6 +32,7 @@ With all this internet going around, sometimes you just want to experience the t
     * **randLoadIncrement** Set to true to make load increment random, loadIncrement ignored in this case.
     * **loadIncrement** Number of pixels to load each time the loadSpeed timer ticks.
     * **randomPause** Probability of skipping a pass each time the loadSpeed timer ticks.
+    * **progressiveJPEG** Set to true to enable progressive JPEG emulation
 
 ## See it in action!
 See an example on the project's site at: http://theonion.github.io/comcastifyjs/
