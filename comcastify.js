@@ -97,7 +97,7 @@ var comcastifyjs = (function () {
           setTimeout(slowloadModiferCallback(slowload, modParamPerImg), params.loadSpeed);
         }
       }
-    }
+    };
   };
 
   return {
