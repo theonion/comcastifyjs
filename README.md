@@ -25,13 +25,13 @@ With all this internet going around, sometimes you just want to experience the t
     });
     ```
 4. Switch up parameters to change your experience:
-    * **elements** list of DOM elements to limit comcastification to.
-    * **boxColor** Hex color for the box placed over images.
-    * **loadMaxPercent** Max percentage of image to load.
-    * **loadSpeed** Speed to load your images to their max in ms.
-    * **randLoadIncrement** Set to true to make load increment random, loadIncrement ignored in this case.
-    * **loadIncrement** Number of pixels to load each time the loadSpeed timer ticks.
-    * **randomPause** Probability of skipping a pass each time the loadSpeed timer ticks.
+    * **elements** : A list of DOM elements to limit comcastification to.
+    * **boxColor** : The hex color for the box placed over images.
+    * **loadMaxPercent** : The max percentage of image to load. (0 to 1)
+    * **loadSpeed** : Time required to load your images to their max in ms.
+    * **loadIncrement** : Number of pixels to load each time the loadSpeed timer ticks.
+    * **randLoadIncrement**:  Set to true to make load increment random, loadIncrement ignored in this case.
+    * **randomPause** : Probability of skipping a pass each time the loadSpeed timer ticks. (0 to 1)
 
 ## See it in action!
 See an example on the project's site at: http://theonion.github.io/comcastifyjs/
