@@ -72,6 +72,7 @@ var comcastifyjs = (function () {
     return function () {
 
       var params = {
+        elements: args.elements || document.querySelectorAll('img:not([class="progressiveJPEGemulator"])'), // elements affected
         boxColor: args.boxColor || '#000000',                 // color of box overlay
         loadMaxPercent: args.loadMaxPercent || 0.0,           // max percentage to load images
         loadSpeed: args.loadSpeed || 500,                     // how often in ms to pass
@@ -80,14 +81,6 @@ var comcastifyjs = (function () {
         randomPause: args.randomPause || 0.0,                 // probability of skipping a pass
         progressiveJPEG: args.progressiveJPEG || false        // enable progressive JPEG emulation
       };
-
-      // generate a list of effected elements based on progressiveJPEG argument
-      if (params.progressiveJPEG) {
-        // this branch doesn't generate a live HTMLCollection, so images added after page load will not automatically load at Comcast speeds
-        params.elements = args.elements || document.querySelectorAll('img:not([class="progessiveJPEGemulator"])');
-      } else {
-        params.elements = args.elements || document.getElementsByTagName('img');
-      }
 
       // make 'em load slow
       for(var i = 0; i < params.elements.length; i++) {
