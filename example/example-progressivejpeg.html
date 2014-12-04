@@ -1,0 +1,42 @@
+<html>
+    <head>
+        
+        <title>comcastify.js - Sometimes images just load too damned fast!</title>
+
+    </head>
+
+    <body>
+
+        <div style="width: 100px; display: inline-block;">
+            <img style="width:100%" src="baby-sloth.jpg" alt="http://violetadams.deviantart.com/art/Baby-sloth-385183627" />
+        </div>
+
+        <div style="width: 100px; display: inline-block;">
+            <image style="width: 100%" src="sloth-close-up.jpg" alt="http://mashable.com/2013/07/20/sloth-makeover/" />
+        </div>
+
+        <div style="width: 100px; display: inline-block;">
+            <image style="width: 100%" src="sloth-hanging.jpg" alt="http://mashable.com/2013/07/20/sloth-makeover/" />
+        </div>
+
+        <div>
+            <img src="sloth.jpg" alt="http://www.wisegeek.com/what-are-the-main-components-of-a-sloth-diet.htm#sloth-in-tree-showing-claws" />
+        </div>
+
+        <script type="text/javascript" src="../comcastify.js"></script>
+        <script type="text/javascript">
+
+            window.onload = comcastifyjs.fixMyImagesLoadingSoFast({
+                boxColor: '#123456', //looks the most like a progressive jpeg with white
+                loadMaxPercent: 1.0,
+                loadSpeed: 100,
+                randLoadIncrement: true,
+                randomPause: .3,
+                progressiveJPEG: true
+            });
+
+        </script>
+
+    </body>
+
+</html>
